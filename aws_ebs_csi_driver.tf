@@ -1,6 +1,8 @@
 module "aws_ebs_csi_irsa_role" {
-  count  = var.enable_aws_ebs_csi_driver ? 1 : 0
-  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  count = var.enable_aws_ebs_csi_driver ? 1 : 0
+
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version = "~> 5.0"
 
 
   role_name             = "ebs-csi"
