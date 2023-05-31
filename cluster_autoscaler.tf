@@ -1,0 +1,88 @@
+module "cluster_autoscaler_irsa_role" {
+  count  = var.enable_cluster_autoscaler ? 1 : 0
+  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+
+  role_name = "cluster-autoscaler"
+
+  attach_cluster_autoscaler_policy = true
+  cluster_autoscaler_cluster_ids   = [module.eks.cluster_name]
+
+  oidc_providers = {
+    sts = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:cluster-autoscaler"]
+    }
+  }
+}
+
+locals {
+  cluster_autoscaler_version = {
+    "1.25" = "v1.25.2"
+    "1.26" = "v1.26.3"
+  }
+}
+
+resource "helm_release" "cluster_autoscaler" {
+  count = var.enable_cluster_autoscaler ? 1 : 0
+
+  name       = "cluster-autoscaler"
+  chart      = "cluster-autoscaler"
+  namespace  = "kube-system"
+  repository = "https://kubernetes.github.io/autoscaler"
+  version    = "9.29.0"
+
+  set {
+    name  = "image.tag"
+    value = lookup(local.cluster_autoscaler_version, var.cluster_version)
+  }
+
+  set {
+    name  = "awsRegion"
+    value = var.aws_region
+  }
+
+  set {
+    name  = "autoDiscovery.clusterName"
+    value = module.eks.cluster_name
+  }
+
+  set {
+    name  = "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+    value = module.cluster_autoscaler_irsa_role[0].iam_role_arn
+  }
+
+  set {
+    name  = "extraArgs.skip-nodes-with-system-pods"
+    value = false
+  }
+
+  set {
+    name  = "extraArgs.skip-nodes-with-local-storage"
+    value = false
+  }
+
+  set {
+    name  = "extraArgs.balance-similar-node-groups"
+    value = true
+  }
+
+  set {
+    name  = "rbac.serviceAccount.name"
+    value = "cluster-autoscaler"
+  }
+
+  set {
+    name  = "resources.requests.cpu"
+    value = "10m"
+  }
+
+  set {
+    name  = "resources.requests.memory"
+    value = "128Mi"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "128Mi"
+  }
+}
