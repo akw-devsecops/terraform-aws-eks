@@ -4,32 +4,31 @@ module "aws_ebs_csi_irsa_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.0"
 
-
   role_name             = "ebs-csi"
   attach_ebs_csi_policy = true
 
   oidc_providers = {
     sts = {
-      provider_arn               = module.eks.oidc_provider_arn
+      provider_arn               = var.oidc_provider_arn
       namespace_service_accounts = ["kube-system:ebs-csi-controller-sa"]
     }
   }
 }
 
-data "aws_eks_addon_version" "aws_ebs_csi_driver" {
+data "aws_eks_addon_version" "this" {
   count = var.enable_aws_ebs_csi_driver ? 1 : 0
 
   addon_name         = "aws-ebs-csi-driver"
-  kubernetes_version = module.eks.cluster_version
+  kubernetes_version = var.cluster_version
   most_recent        = true
 }
 
-resource "aws_eks_addon" "aws_ebs_csi_driver" {
+resource "aws_eks_addon" "this" {
   count = var.enable_aws_ebs_csi_driver ? 1 : 0
 
   addon_name               = "aws-ebs-csi-driver"
-  cluster_name             = module.eks.cluster_name
-  addon_version            = data.aws_eks_addon_version.aws_ebs_csi_driver[0].version
+  cluster_name             = var.cluster_name
+  addon_version            = data.aws_eks_addon_version.this[0].version
   service_account_role_arn = module.aws_ebs_csi_irsa_role[0].iam_role_arn
   preserve                 = false
 }
