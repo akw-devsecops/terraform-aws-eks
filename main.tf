@@ -25,3 +25,11 @@ module "aws_ebs_csi_driver" {
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
 }
+
+module "aws_efs_csi_driver" {
+  source = "./modules/aws-efs-csi-driver"
+
+  enable_aws_efs_csi_driver = var.enable_aws_efs_csi_driver
+
+  oidc_provider_arn = module.eks.oidc_provider_arn
+}
