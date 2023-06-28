@@ -1,4 +1,4 @@
-resource "helm_release" "cert_manager" {
+resource "helm_release" "this" {
   count = var.enable_cert_manager ? 1 : 0
 
   name       = "cert-manager"
@@ -61,6 +61,4 @@ resource "kubernetes_manifest" "cluster_issuer_lets_encrypt" {
       }
     }
   }
-
-  depends_on = [helm_release.cert_manager[0]]
 }
