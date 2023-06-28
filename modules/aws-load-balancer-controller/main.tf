@@ -9,7 +9,7 @@ module "aws_load_balancer_controller_irsa_role" {
 
   oidc_providers = {
     sts = {
-      provider_arn               = module.eks.oidc_provider_arn
+      provider_arn               = var.oidc_provider_arn
       namespace_service_accounts = ["kube-system:aws-load-balancer-controller"]
     }
   }
@@ -26,7 +26,7 @@ resource "helm_release" "aws_load_balancer_controller" {
 
   set {
     name  = "clusterName"
-    value = module.eks.cluster_name
+    value = var.cluster_name
   }
 
   set {
