@@ -51,7 +51,7 @@ module "cluster_autoscaler" {
   oidc_provider_arn = module.eks.oidc_provider_arn
 }
 
-module "metrucs_server" {
+module "metrics_server" {
   source = "./modules/metrics-server"
 
   enable_metrics_server = var.enable_metrics_server
