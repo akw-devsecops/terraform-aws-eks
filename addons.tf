@@ -64,3 +64,11 @@ module "newrelic" {
 
   cluster_name = module.eks.cluster_name
 }
+
+module "nginx" {
+  source = "./modules/nginx"
+
+  enable_nginx = var.enable_nginx
+
+  nlb_eip_count = var.nlb_eip_count
+}

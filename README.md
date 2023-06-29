@@ -33,13 +33,12 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 19.0 |
 | <a name="module_metrics_server"></a> [metrics\_server](#module\_metrics\_server) | ./modules/metrics-server | n/a |
 | <a name="module_newrelic"></a> [newrelic](#module\_newrelic) | ./modules/newrelic | n/a |
+| <a name="module_nginx"></a> [nginx](#module\_nginx) | ./modules/nginx | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_eip.nlb_ips](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
-| [helm_release.ingress_nginx](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_manifest.eni_configs](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
 | [aws_subnet.pods](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
 

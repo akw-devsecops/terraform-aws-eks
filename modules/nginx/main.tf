@@ -1,8 +1,8 @@
-resource "aws_eip" "nlb_ips" {
+resource "aws_eip" "this" {
   count = var.nlb_eip_count
 }
 
-resource "helm_release" "ingress_nginx" {
+resource "helm_release" "this" {
   count = var.enable_nginx ? 1 : 0
 
   name       = "ingress-nginx"
