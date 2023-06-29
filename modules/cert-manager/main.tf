@@ -28,6 +28,21 @@ resource "helm_release" "this" {
   }
 
   set {
+    name  = "tolerations[0].key"
+    value = "arch"
+  }
+
+  set {
+    name  = "tolerations[0].value"
+    value = "arm64"
+  }
+
+  set {
+    name  = "tolerations[0].effect"
+    value = "NoSchedule"
+  }
+
+  set {
     name  = "extraArgs"
     value = "{--logging-format=json}"
   }
