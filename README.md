@@ -31,7 +31,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="module_cert_manager"></a> [cert\_manager](#module\_cert\_manager) | ./modules/cert-manager | n/a |
 | <a name="module_cluster_autoscaler"></a> [cluster\_autoscaler](#module\_cluster\_autoscaler) | ./modules/cluster-autoscaler | n/a |
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 19.0 |
-| <a name="module_metrucs_server"></a> [metrucs\_server](#module\_metrucs\_server) | ./modules/metrics-server | n/a |
+| <a name="module_metrics_server"></a> [metrics\_server](#module\_metrics\_server) | ./modules/metrics-server | n/a |
 
 ## Resources
 
