@@ -5,3 +5,6 @@ output:
 
 sort:
   by: required
+
+recursive:
+  enabled: true
