@@ -56,3 +56,11 @@ module "metrics_server" {
 
   enable_metrics_server = var.enable_metrics_server
 }
+
+module "newrelic" {
+  source = "./modules/newrelic"
+
+  enable_newrelic = var.enable_newrelic
+
+  cluster_name = module.eks.cluster_name
+}
