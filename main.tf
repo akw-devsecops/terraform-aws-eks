@@ -39,3 +39,14 @@ module "cert_manager" {
   enable_cluster_issuer_letsencrypt = var.enable_cluster_issuer_letsencrypt
   cluster_issuer_letsencrypt_email  = var.cluster_issuer_letsencrypt_email
 }
+
+module "cluster_autoscaler" {
+  source = "./modules/cluster-autoscaler"
+
+  enable_cluster_autoscaler = var.enable_cluster_autoscaler
+
+  aws_region        = var.aws_region
+  cluster_name      = module.eks.cluster_name
+  cluster_version   = module.eks.cluster_version
+  oidc_provider_arn = module.eks.oidc_provider_arn
+}
