@@ -38,7 +38,7 @@ resource "helm_release" "this" {
 
   set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-eip-allocations"
-    value = join("\\,", aws_eip.nlb_ips[*].id)
+    value = join("\\,", aws_eip.this[*].id)
   }
 
   set {
