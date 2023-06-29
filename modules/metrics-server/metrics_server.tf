@@ -1,4 +1,4 @@
-resource "helm_release" "metrics_server" {
+resource "helm_release" "this" {
   count = var.enable_metrics_server ? 1 : 0
 
   name       = "metrics-server"
