@@ -9,13 +9,13 @@ module "aws_efs_csi_irsa_role" {
 
   oidc_providers = {
     sts = {
-      provider_arn               = module.eks.oidc_provider_arn
+      provider_arn               = var.oidc_provider_arn
       namespace_service_accounts = ["kube-system:efs-csi-controller-sa"]
     }
   }
 }
 
-resource "helm_release" "aws_efs_csi_driver" {
+resource "helm_release" "this" {
   count = var.enable_aws_efs_csi_driver ? 1 : 0
 
   name       = "aws-efs-csi-driver"

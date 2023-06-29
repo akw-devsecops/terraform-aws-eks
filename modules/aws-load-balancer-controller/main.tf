@@ -15,7 +15,7 @@ module "aws_load_balancer_controller_irsa_role" {
   }
 }
 
-resource "helm_release" "aws_load_balancer_controller" {
+resource "helm_release" "this" {
   count = var.enable_aws_load_balancer_controller ? 1 : 0
 
   name       = "aws-load-balancer-controller"
