@@ -33,3 +33,9 @@ module "aws_efs_csi_driver" {
 
   oidc_provider_arn = module.eks.oidc_provider_arn
 }
+
+module "calico" {
+  source = "./modules/calico"
+
+  enable_calico = var.enable_calico
+}

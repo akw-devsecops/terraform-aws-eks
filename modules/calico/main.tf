@@ -1,4 +1,4 @@
-resource "helm_release" "tigera_operator" {
+resource "helm_release" "this" {
   count = var.enable_calico ? 1 : 0
 
   name       = "tigera-operator"
