@@ -26,4 +26,19 @@ resource "helm_release" "this" {
     name  = "resources.limits.memory"
     value = "256Mi"
   }
+
+  set {
+    name  = "tolerations[0].key"
+    value = "arch"
+  }
+
+  set {
+    name  = "tolerations[0].value"
+    value = "arm64"
+  }
+
+  set {
+    name  = "tolerations[0].effect"
+    value = "NoSchedule"
+  }
 }
