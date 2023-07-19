@@ -154,3 +154,9 @@ variable "cluster_issuer_letsencrypt_email" {
   type        = string
   default     = null
 }
+
+variable "coredns_additional_zones" {
+  description = "Additional zones to be placed in CoreDNS Corefile."
+  type        = string
+  default     = ""
+}
