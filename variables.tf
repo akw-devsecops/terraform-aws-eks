@@ -92,8 +92,20 @@ variable "enable_cluster_autoscaler" {
   default     = true
 }
 
+variable "enable_cluster_autoscaler_role" {
+  description = "Determines whether to install Cluster Autoscaler IRSA"
+  type        = bool
+  default     = true
+}
+
 variable "enable_aws_load_balancer_controller" {
   description = "Determines whether to install AWS Load Balancer Controller for EKS"
+  type        = bool
+  default     = true
+}
+
+variable "enable_aws_load_balancer_controller_role" {
+  description = "Determines whether to install AWS Load Balancer Controller IRSA"
   type        = bool
   default     = true
 }
@@ -134,8 +146,20 @@ variable "enable_aws_ebs_csi_driver" {
   default     = true
 }
 
+variable "enable_aws_ebs_csi_driver_role" {
+  description = "Determines whether to install EBS CSI Driver IRSA"
+  type        = bool
+  default     = true
+}
+
 variable "enable_aws_efs_csi_driver" {
   description = "Determines whether to install EFS CSI Driver for EKS"
+  type        = bool
+  default     = false
+}
+
+variable "enable_aws_efs_csi_driver_role" {
+  description = "Determines whether to install EFS CSI Driver IRSA"
   type        = bool
   default     = false
 }
