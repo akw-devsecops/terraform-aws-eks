@@ -19,9 +19,9 @@ module "cluster_autoscaler_irsa_role" {
 
 locals {
   cluster_autoscaler_version = {
-    "1.25" = "v1.25.2"
-    "1.26" = "v1.26.3"
-    "1.27" = "v1.27.2"
+    "1.25" = "v1.25.3"
+    "1.26" = "v1.26.4"
+    "1.27" = "v1.27.3"
   }
 }
 
