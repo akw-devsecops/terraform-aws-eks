@@ -4,14 +4,14 @@ data "aws_ssm_parameter" "newrelic_license_key" {
   name = "NewRelicLicenseKey"
 }
 
-resource "helm_release" "newrelic_bundle" {
+resource "helm_release" "this" {
   count = var.enable_newrelic ? 1 : 0
 
   name       = "newrelic-bundle"
   repository = "https://helm-charts.newrelic.com"
   chart      = "nri-bundle"
   namespace  = "kube-system"
-  version    = "5.0.21"
+  version    = "5.0.23"
 
   set_sensitive {
     name  = "global.licenseKey"
@@ -20,7 +20,7 @@ resource "helm_release" "newrelic_bundle" {
 
   set {
     name  = "global.cluster"
-    value = module.eks.cluster_name
+    value = var.cluster_name
   }
 
   set {

@@ -1,4 +1,4 @@
-resource "helm_release" "tigera_operator" {
+resource "helm_release" "this" {
   count = var.enable_calico ? 1 : 0
 
   name       = "tigera-operator"
@@ -25,5 +25,20 @@ resource "helm_release" "tigera_operator" {
   set {
     name  = "resources.limits.memory"
     value = "256Mi"
+  }
+
+  set {
+    name  = "tolerations[0].key"
+    value = "arch"
+  }
+
+  set {
+    name  = "tolerations[0].value"
+    value = "arm64"
+  }
+
+  set {
+    name  = "tolerations[0].effect"
+    value = "NoSchedule"
   }
 }

@@ -1,5 +1,5 @@
 module "aws_efs_csi_irsa_role" {
-  count = var.enable_aws_efs_csi_driver ? 1 : 0
+  count = var.enable_aws_efs_csi_driver_role ? 1 : 0
 
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.0"
@@ -9,20 +9,20 @@ module "aws_efs_csi_irsa_role" {
 
   oidc_providers = {
     sts = {
-      provider_arn               = module.eks.oidc_provider_arn
+      provider_arn               = var.oidc_provider_arn
       namespace_service_accounts = ["kube-system:efs-csi-controller-sa"]
     }
   }
 }
 
-resource "helm_release" "aws_efs_csi_driver" {
+resource "helm_release" "this" {
   count = var.enable_aws_efs_csi_driver ? 1 : 0
 
   name       = "aws-efs-csi-driver"
   repository = "https://kubernetes-sigs.github.io/aws-efs-csi-driver"
   chart      = "aws-efs-csi-driver"
   namespace  = "kube-system"
-  version    = "2.4.6"
+  version    = "2.4.7"
 
   set {
     name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"

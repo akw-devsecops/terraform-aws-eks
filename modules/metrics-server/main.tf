@@ -1,4 +1,4 @@
-resource "helm_release" "metrics_server" {
+resource "helm_release" "this" {
   count = var.enable_metrics_server ? 1 : 0
 
   name       = "metrics-server"
@@ -20,5 +20,20 @@ resource "helm_release" "metrics_server" {
   set {
     name  = "resources.limits.memory"
     value = "128Mi"
+  }
+
+  set {
+    name  = "tolerations[0].key"
+    value = "arch"
+  }
+
+  set {
+    name  = "tolerations[0].value"
+    value = "arm64"
+  }
+
+  set {
+    name  = "tolerations[0].effect"
+    value = "NoSchedule"
   }
 }

@@ -1,5 +1,5 @@
 module "aws_load_balancer_controller_irsa_role" {
-  count = var.enable_aws_load_balancer_controller ? 1 : 0
+  count = var.enable_aws_load_balancer_controller_role ? 1 : 0
 
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.0"
@@ -9,24 +9,24 @@ module "aws_load_balancer_controller_irsa_role" {
 
   oidc_providers = {
     sts = {
-      provider_arn               = module.eks.oidc_provider_arn
+      provider_arn               = var.oidc_provider_arn
       namespace_service_accounts = ["kube-system:aws-load-balancer-controller"]
     }
   }
 }
 
-resource "helm_release" "aws_load_balancer_controller" {
+resource "helm_release" "this" {
   count = var.enable_aws_load_balancer_controller ? 1 : 0
 
   name       = "aws-load-balancer-controller"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
   namespace  = "kube-system"
-  version    = "1.5.4"
+  version    = "1.5.5"
 
   set {
     name  = "clusterName"
-    value = module.eks.cluster_name
+    value = var.cluster_name
   }
 
   set {

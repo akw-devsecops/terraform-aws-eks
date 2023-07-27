@@ -1,11 +1,11 @@
-resource "helm_release" "cert_manager" {
+resource "helm_release" "this" {
   count = var.enable_cert_manager ? 1 : 0
 
   name       = "cert-manager"
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
   namespace  = "kube-system"
-  version    = "v1.12.2"
+  version    = "v1.12.3"
 
   set {
     name  = "installCRDs"
@@ -25,6 +25,21 @@ resource "helm_release" "cert_manager" {
   set {
     name  = "resources.limits.memory"
     value = "128Mi"
+  }
+
+  set {
+    name  = "tolerations[0].key"
+    value = "arch"
+  }
+
+  set {
+    name  = "tolerations[0].value"
+    value = "arm64"
+  }
+
+  set {
+    name  = "tolerations[0].effect"
+    value = "NoSchedule"
   }
 
   set {
@@ -61,6 +76,4 @@ resource "kubernetes_manifest" "cluster_issuer_lets_encrypt" {
       }
     }
   }
-
-  depends_on = [helm_release.cert_manager[0]]
 }

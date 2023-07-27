@@ -1,5 +1,5 @@
 module "cluster_autoscaler_irsa_role" {
-  count = var.enable_cluster_autoscaler ? 1 : 0
+  count = var.enable_cluster_autoscaler_role ? 1 : 0
 
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.0"
@@ -7,11 +7,11 @@ module "cluster_autoscaler_irsa_role" {
   role_name = "cluster-autoscaler"
 
   attach_cluster_autoscaler_policy = true
-  cluster_autoscaler_cluster_ids   = [module.eks.cluster_name]
+  cluster_autoscaler_cluster_ids   = [var.cluster_name]
 
   oidc_providers = {
     sts = {
-      provider_arn               = module.eks.oidc_provider_arn
+      provider_arn               = var.oidc_provider_arn
       namespace_service_accounts = ["kube-system:cluster-autoscaler"]
     }
   }
@@ -25,7 +25,7 @@ locals {
   }
 }
 
-resource "helm_release" "cluster_autoscaler" {
+resource "helm_release" "this" {
   count = var.enable_cluster_autoscaler ? 1 : 0
 
   name       = "cluster-autoscaler"
@@ -46,7 +46,7 @@ resource "helm_release" "cluster_autoscaler" {
 
   set {
     name  = "autoDiscovery.clusterName"
-    value = module.eks.cluster_name
+    value = var.cluster_name
   }
 
   set {
