@@ -4,6 +4,12 @@ variable "enable_aws_load_balancer_controller" {
   default     = true
 }
 
+variable "enable_aws_load_balancer_controller_role" {
+  description = "Determines whether to install AWS Load Balancer Controller IRSA"
+  type        = bool
+  default     = true
+}
+
 variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string

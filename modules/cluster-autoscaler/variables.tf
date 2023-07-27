@@ -4,6 +4,12 @@ variable "enable_cluster_autoscaler" {
   default     = true
 }
 
+variable "enable_cluster_autoscaler_role" {
+  description = "Determines whether to install Cluster Autoscaler IRSA"
+  type        = bool
+  default     = true
+}
+
 variable "aws_region" {
   description = "The AWS region"
   type        = string

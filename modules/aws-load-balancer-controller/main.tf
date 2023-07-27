@@ -1,5 +1,5 @@
 module "aws_load_balancer_controller_irsa_role" {
-  count = var.enable_aws_load_balancer_controller ? 1 : 0
+  count = var.enable_aws_load_balancer_controller_role ? 1 : 0
 
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.0"
