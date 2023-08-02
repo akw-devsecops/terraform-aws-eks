@@ -7,6 +7,7 @@ module "aws_ebs_csi_driver" {
   cluster_name      = module.eks.cluster_name
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
+  iam_role_name     = var.ebs_iam_role_name
 }
 
 module "aws_efs_csi_driver" {
@@ -16,6 +17,7 @@ module "aws_efs_csi_driver" {
   enable_aws_efs_csi_driver_role = var.enable_aws_efs_csi_driver_role
 
   oidc_provider_arn = module.eks.oidc_provider_arn
+  iam_role_name     = var.efs_iam_role_name
 }
 
 module "aws_load_balancer_controller" {
@@ -26,6 +28,7 @@ module "aws_load_balancer_controller" {
 
   cluster_name      = module.eks.cluster_name
   oidc_provider_arn = module.eks.oidc_provider_arn
+  iam_role_name     = var.aws_lb_iam_role_name
 }
 
 module "calico" {
@@ -53,6 +56,7 @@ module "cluster_autoscaler" {
   cluster_name      = module.eks.cluster_name
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
+  iam_role_name     = var.cluster_autoscaler_iam_role_name
 }
 
 module "metrics_server" {
