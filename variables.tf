@@ -184,3 +184,27 @@ variable "coredns_additional_zones" {
   type        = string
   default     = ""
 }
+
+variable "ebs_iam_role_name" {
+  description = "The name of the ebs-csi IAM role"
+  type        = string
+  default     = "ebs-csi"
+}
+
+variable "efs_iam_role_name" {
+  description = "The name of the efs-csi IAM role"
+  type        = string
+  default     = "efs-csi"
+}
+
+variable "aws_lb_iam_role_name" {
+  description = "The name of the aws-load-balancer-controller IAM role"
+  type        = string
+  default     = "aws-load-balancer-controller"
+}
+
+variable "cluster_autoscaler_iam_role_name" {
+  description = "The name of the cluster-autoscaler IAM role"
+  type        = string
+  default     = "cluster-autoscaler"
+}
