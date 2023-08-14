@@ -95,12 +95,12 @@ resource "helm_release" "this" {
 
   set {
     name  = "kube-state-metrics.resources.requests.memory"
-    value = "64Mi"
+    value = "128Mi"
   }
 
   set {
     name  = "kube-state-metrics.resources.limits.memory"
-    value = "64Mi"
+    value = "128Mi"
   }
 
   set {
