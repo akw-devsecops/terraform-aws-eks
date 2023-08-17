@@ -65,6 +65,12 @@ variable "iam_admin_role" {
   type        = string
 }
 
+variable "iam_cluster_management_role" {
+  description = "ARN of the cluster management role"
+  type        = string
+  default     = null
+}
+
 variable "iam_additional_roles" {
   description = "List of additional roles maps to add to the aws-auth configmap"
   type        = list(any)
