@@ -81,7 +81,7 @@ module "nginx" {
   nlb_eip_count = var.nlb_eip_count
 }
 
-module "argo_cd_client" {
+module "argo_cd_management_client" {
   source = "./modules/argo-cd-client"
 
   count = var.iam_cluster_management_role != null ? 1 : 0

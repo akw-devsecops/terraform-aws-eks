@@ -22,7 +22,7 @@ Terraform Module to set up an AWS EKS cluster.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_argo_cd_client"></a> [argo\_cd\_client](#module\_argo\_cd\_client) | ./modules/argo-cd-client | n/a |
+| <a name="module_argo_cd_management_client"></a> [argo\_cd\_management\_client](#module\_argo\_cd\_management\_client) | ./modules/argo-cd-client | n/a |
 | <a name="module_aws_ebs_csi_driver"></a> [aws\_ebs\_csi\_driver](#module\_aws\_ebs\_csi\_driver) | ./modules/aws-ebs-csi-driver | n/a |
 | <a name="module_aws_efs_csi_driver"></a> [aws\_efs\_csi\_driver](#module\_aws\_efs\_csi\_driver) | ./modules/aws-efs-csi-driver | n/a |
 | <a name="module_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#module\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
