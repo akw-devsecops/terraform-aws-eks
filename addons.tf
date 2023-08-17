@@ -86,7 +86,7 @@ module "argo_cd_cluster_management_client" {
 
   count = var.iam_cluster_management_role != null ? 1 : 0
 
-  remote_cluster_name = var.cluster_name
+  remote_cluster_name = var.cluster_management_cluster_name
   trusted_role_arn    = var.iam_cluster_management_role
 }
 
@@ -95,6 +95,6 @@ module "argo_cd_application_management_client" {
 
   count = var.iam_application_management_role != null ? 1 : 0
 
-  remote_cluster_name = var.cluster_name
+  remote_cluster_name = var.application_management_cluster_name
   trusted_role_arn    = var.iam_application_management_role
 }

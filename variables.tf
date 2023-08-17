@@ -220,3 +220,15 @@ variable "cluster_autoscaler_iam_role_name" {
   type        = string
   default     = "cluster-autoscaler"
 }
+
+variable "cluster_management_cluster_name" {
+  description = "The name of the cluster management cluster"
+  type        = string
+  default     = null
+}
+
+variable "application_management_cluster_name" {
+  description = "The name of the application management cluster"
+  type        = string
+  default     = null
+}
