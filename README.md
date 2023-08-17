@@ -22,7 +22,8 @@ Terraform Module to set up an AWS EKS cluster.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_argo_cd_management_client"></a> [argo\_cd\_management\_client](#module\_argo\_cd\_management\_client) | ./modules/argo-cd-client | n/a |
+| <a name="module_argo_cd_application_management_client"></a> [argo\_cd\_application\_management\_client](#module\_argo\_cd\_application\_management\_client) | ./modules/argo-cd-client | n/a |
+| <a name="module_argo_cd_cluster_management_client"></a> [argo\_cd\_cluster\_management\_client](#module\_argo\_cd\_cluster\_management\_client) | ./modules/argo-cd-client | n/a |
 | <a name="module_aws_ebs_csi_driver"></a> [aws\_ebs\_csi\_driver](#module\_aws\_ebs\_csi\_driver) | ./modules/aws-ebs-csi-driver | n/a |
 | <a name="module_aws_efs_csi_driver"></a> [aws\_efs\_csi\_driver](#module\_aws\_efs\_csi\_driver) | ./modules/aws-efs-csi-driver | n/a |
 | <a name="module_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#module\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
@@ -75,6 +76,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_enable_nginx"></a> [enable\_nginx](#input\_enable\_nginx) | Determines whether to install NGINX Ingress Controller for EKS | `bool` | `true` | no |
 | <a name="input_iam_additional_roles"></a> [iam\_additional\_roles](#input\_iam\_additional\_roles) | List of additional roles maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
 | <a name="input_iam_additional_users"></a> [iam\_additional\_users](#input\_iam\_additional\_users) | List of additional user maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
+| <a name="input_iam_application_management_role"></a> [iam\_application\_management\_role](#input\_iam\_application\_management\_role) | ARN of the application management role | `string` | `null` | no |
 | <a name="input_iam_cluster_management_role"></a> [iam\_cluster\_management\_role](#input\_iam\_cluster\_management\_role) | ARN of the cluster management role | `string` | `null` | no |
 | <a name="input_nlb_eip_count"></a> [nlb\_eip\_count](#input\_nlb\_eip\_count) | Determines the number of Elastic IPs used on the network load balancer | `number` | `3` | no |
 | <a name="input_node_increase_pod_limit"></a> [node\_increase\_pod\_limit](#input\_node\_increase\_pod\_limit) | Determines whether prefix delegation is enabled. | `bool` | `true` | no |

@@ -81,11 +81,20 @@ module "nginx" {
   nlb_eip_count = var.nlb_eip_count
 }
 
-module "argo_cd_management_client" {
+module "argo_cd_cluster_management_client" {
   source = "./modules/argo-cd-client"
 
   count = var.iam_cluster_management_role != null ? 1 : 0
 
   remote_cluster_name = var.cluster_name
   trusted_role_arn    = var.iam_cluster_management_role
+}
+
+module "argo_cd_application_management_client" {
+  source = "./modules/argo-cd-client"
+
+  count = var.iam_application_management_role != null ? 1 : 0
+
+  remote_cluster_name = var.cluster_name
+  trusted_role_arn    = var.iam_application_management_role
 }

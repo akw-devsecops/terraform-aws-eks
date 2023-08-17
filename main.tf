@@ -16,9 +16,15 @@ locals {
     groups   = ["system:masters"]
   }]
 
-  management_role_map = var.iam_cluster_management_role != null ? [{
-    rolearn  = module.argo_cd_management_client[0].role_arn
+  cluster_management_role_map = var.iam_cluster_management_role != null ? [{
+    rolearn  = module.argo_cd_cluster_management_client[0].role_arn
     username = "remote_cluster_management"
+    groups   = ["system:masters"]
+  }] : []
+
+  application_management_role_map = var.iam_application_management_role != null ? [{
+    rolearn  = module.argo_cd_application_management_client[0].role_arn
+    username = "remote_application_management"
     groups   = ["system:masters"]
   }] : []
 
@@ -120,7 +126,8 @@ module "eks" {
 
   aws_auth_roles = concat(
     local.admin_role_map,
-    local.management_role_map,
+    local.cluster_management_role_map,
+    local.application_management_role_map,
     var.iam_additional_roles
   )
 
