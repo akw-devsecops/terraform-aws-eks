@@ -24,6 +24,7 @@ Terraform Module to set up an AWS EKS cluster.
 |------|--------|---------|
 | <a name="module_argo_cd_application_management_client"></a> [argo\_cd\_application\_management\_client](#module\_argo\_cd\_application\_management\_client) | ./modules/argo-cd-client | n/a |
 | <a name="module_argo_cd_cluster_management_client"></a> [argo\_cd\_cluster\_management\_client](#module\_argo\_cd\_cluster\_management\_client) | ./modules/argo-cd-client | n/a |
+| <a name="module_argo_cd_controller"></a> [argo\_cd\_controller](#module\_argo\_cd\_controller) | ./modules/argo-cd-controller | n/a |
 | <a name="module_aws_ebs_csi_driver"></a> [aws\_ebs\_csi\_driver](#module\_aws\_ebs\_csi\_driver) | ./modules/aws-ebs-csi-driver | n/a |
 | <a name="module_aws_efs_csi_driver"></a> [aws\_efs\_csi\_driver](#module\_aws\_efs\_csi\_driver) | ./modules/aws-efs-csi-driver | n/a |
 | <a name="module_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#module\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
@@ -84,6 +85,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_node_increase_pod_limit"></a> [node\_increase\_pod\_limit](#input\_node\_increase\_pod\_limit) | Determines whether prefix delegation is enabled. | `bool` | `true` | no |
 | <a name="input_node_subnet_ids"></a> [node\_subnet\_ids](#input\_node\_subnet\_ids) | A list of default subnet IDs where the `eks_managed_node_groups` will be provisioned. | `list(string)` | `[]` | no |
 | <a name="input_pod_subnet_ids"></a> [pod\_subnet\_ids](#input\_pod\_subnet\_ids) | A list of subnet IDs where the pods will be provisioned. If not provided, the pods (ENIs) will be provisioned in the `node_subnet_ids` subnets. | `list(string)` | `[]` | no |
+| <a name="input_remote_management_target_iam_role_arns"></a> [remote\_management\_target\_iam\_role\_arns](#input\_remote\_management\_target\_iam\_role\_arns) | The name of the IAM roles to assume for remote cluster management | `set(string)` | `[]` | no |
 
 ## Outputs
 

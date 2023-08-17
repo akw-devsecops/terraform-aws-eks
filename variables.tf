@@ -232,3 +232,9 @@ variable "application_management_cluster_name" {
   type        = string
   default     = ""
 }
+
+variable "remote_management_target_iam_role_arns" {
+  description = "The name of the IAM roles to assume for remote cluster management"
+  type        = set(string)
+  default     = []
+}

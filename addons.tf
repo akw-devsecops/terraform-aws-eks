@@ -98,3 +98,13 @@ module "argo_cd_application_management_client" {
   remote_cluster_name = var.application_management_cluster_name
   trusted_role_arn    = var.iam_application_management_role
 }
+
+module "argo_cd_controller" {
+  source = "./modules/argo-cd-controller"
+
+  count = length(var.remote_management_target_iam_role_arns) > 0 ? 1 : 0
+
+  cluster_name      = module.eks.cluster_name
+  oidc_provider_arn = module.eks.oidc_provider_arn
+  target_role_arns  = var.remote_management_target_iam_role_arns
+}
