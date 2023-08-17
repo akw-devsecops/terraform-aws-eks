@@ -30,7 +30,7 @@ No requirements.
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | The ARN of the OIDC Provider | `string` | n/a | yes |
-| <a name="input_target_role_arn"></a> [target\_role\_arn](#input\_target\_role\_arn) | The ARN of the target role to assume | `string` | n/a | yes |
+| <a name="input_remote_management_iam_role_arns"></a> [remote\_management\_iam\_role\_arns](#input\_remote\_management\_iam\_role\_arns) | The name of the IAM roles to assume for remote cluster management | `set(string)` | `[]` | no |
 
 ## Outputs
 

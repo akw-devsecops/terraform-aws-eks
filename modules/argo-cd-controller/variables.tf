@@ -8,7 +8,8 @@ variable "oidc_provider_arn" {
   type        = string
 }
 
-variable "target_role_arn" {
-  description = "The ARN of the target role to assume"
-  type        = string
+variable "remote_management_iam_role_arns" {
+  description = "The name of the IAM roles to assume for remote cluster management"
+  type        = set(string)
+  default     = []
 }
