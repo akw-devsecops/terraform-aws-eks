@@ -224,11 +224,11 @@ variable "cluster_autoscaler_iam_role_name" {
 variable "cluster_management_cluster_name" {
   description = "The name of the cluster management cluster"
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "application_management_cluster_name" {
   description = "The name of the application management cluster"
   type        = string
-  default     = null
+  default     = ""
 }
