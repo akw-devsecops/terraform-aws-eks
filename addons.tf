@@ -104,7 +104,7 @@ module "argo_cd_controller" {
 
   count = length(var.remote_management_target_iam_role_arns) > 0 ? 1 : 0
 
-  cluster_name      = module.eks.cluster_name
-  oidc_provider_arn = module.eks.oidc_provider_arn
-  target_role_arns  = var.remote_management_target_iam_role_arns
+  cluster_name                    = module.eks.cluster_name
+  oidc_provider_arn               = module.eks.oidc_provider_arn
+  remote_management_iam_role_arns = var.remote_management_target_iam_role_arns
 }
