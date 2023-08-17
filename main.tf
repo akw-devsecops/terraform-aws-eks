@@ -16,13 +16,13 @@ locals {
     groups   = ["system:masters"]
   }]
 
-  cluster_management_role_map = var.iam_cluster_management_role != null ? [{
+  cluster_management_role_map = var.iam_argo_cd_cluster_management_role != null ? [{
     rolearn  = module.argo_cd_cluster_management_client[0].role_arn
     username = "remote-cluster-management"
     groups   = ["system:masters"]
   }] : []
 
-  application_management_role_map = var.iam_application_management_role != null ? [{
+  application_management_role_map = var.iam_argo_cd_application_management_role != null ? [{
     rolearn  = module.argo_cd_application_management_client[0].role_arn
     username = "remote-application-management"
     groups   = ["system:masters"]

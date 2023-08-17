@@ -52,11 +52,12 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.22`) | `string` | n/a | yes |
 | <a name="input_iam_admin_role"></a> [iam\_admin\_role](#input\_iam\_admin\_role) | ARN of the admin role that will be added to `system:masters` | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC where the cluster and its nodes will be provisioned | `string` | n/a | yes |
-| <a name="input_application_management_cluster_name"></a> [application\_management\_cluster\_name](#input\_application\_management\_cluster\_name) | The name of the application management cluster | `string` | `""` | no |
+| <a name="input_argo_cd_application_management_cluster_name"></a> [argo\_cd\_application\_management\_cluster\_name](#input\_argo\_cd\_application\_management\_cluster\_name) | The name of the application management cluster | `string` | `""` | no |
+| <a name="input_argo_cd_cluster_management_cluster_name"></a> [argo\_cd\_cluster\_management\_cluster\_name](#input\_argo\_cd\_cluster\_management\_cluster\_name) | The name of the cluster management cluster | `string` | `""` | no |
+| <a name="input_argo_cd_remote_target_iam_role_arns"></a> [argo\_cd\_remote\_target\_iam\_role\_arns](#input\_argo\_cd\_remote\_target\_iam\_role\_arns) | The name of the IAM roles to assume for remote cluster management | `set(string)` | `[]` | no |
 | <a name="input_aws_lb_iam_role_name"></a> [aws\_lb\_iam\_role\_name](#input\_aws\_lb\_iam\_role\_name) | The name of the aws-load-balancer-controller IAM role | `string` | `"aws-load-balancer-controller"` | no |
 | <a name="input_cluster_autoscaler_iam_role_name"></a> [cluster\_autoscaler\_iam\_role\_name](#input\_cluster\_autoscaler\_iam\_role\_name) | The name of the cluster-autoscaler IAM role | `string` | `"cluster-autoscaler"` | no |
 | <a name="input_cluster_issuer_letsencrypt_email"></a> [cluster\_issuer\_letsencrypt\_email](#input\_cluster\_issuer\_letsencrypt\_email) | Let's Encrypt will use this to contact you about expiring certificates, and issues related to your account. | `string` | `null` | no |
-| <a name="input_cluster_management_cluster_name"></a> [cluster\_management\_cluster\_name](#input\_cluster\_management\_cluster\_name) | The name of the cluster management cluster | `string` | `""` | no |
 | <a name="input_control_plane_subnet_ids"></a> [control\_plane\_subnet\_ids](#input\_control\_plane\_subnet\_ids) | A list of subnet IDs where the EKS cluster control plane (ENIs) will be provisioned. Used for expanding the pool of subnets used by nodes/node groups without replacing the EKS control plane | `list(string)` | `[]` | no |
 | <a name="input_coredns_additional_zones"></a> [coredns\_additional\_zones](#input\_coredns\_additional\_zones) | Additional zones to be placed in CoreDNS Corefile. | `string` | `""` | no |
 | <a name="input_default_pod_security_policy"></a> [default\_pod\_security\_policy](#input\_default\_pod\_security\_policy) | Configures the default pod security policy. Valid values are privileged, baseline or restricted. | `string` | `"baseline"` | no |
@@ -79,13 +80,12 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_enable_nginx"></a> [enable\_nginx](#input\_enable\_nginx) | Determines whether to install NGINX Ingress Controller for EKS | `bool` | `true` | no |
 | <a name="input_iam_additional_roles"></a> [iam\_additional\_roles](#input\_iam\_additional\_roles) | List of additional roles maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
 | <a name="input_iam_additional_users"></a> [iam\_additional\_users](#input\_iam\_additional\_users) | List of additional user maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
-| <a name="input_iam_application_management_role"></a> [iam\_application\_management\_role](#input\_iam\_application\_management\_role) | ARN of the application management role | `string` | `null` | no |
-| <a name="input_iam_cluster_management_role"></a> [iam\_cluster\_management\_role](#input\_iam\_cluster\_management\_role) | ARN of the cluster management role | `string` | `null` | no |
+| <a name="input_iam_argo_cd_application_management_role"></a> [iam\_argo\_cd\_application\_management\_role](#input\_iam\_argo\_cd\_application\_management\_role) | ARN of the application management role | `string` | `null` | no |
+| <a name="input_iam_argo_cd_cluster_management_role"></a> [iam\_argo\_cd\_cluster\_management\_role](#input\_iam\_argo\_cd\_cluster\_management\_role) | ARN of the cluster management role | `string` | `null` | no |
 | <a name="input_nlb_eip_count"></a> [nlb\_eip\_count](#input\_nlb\_eip\_count) | Determines the number of Elastic IPs used on the network load balancer | `number` | `3` | no |
 | <a name="input_node_increase_pod_limit"></a> [node\_increase\_pod\_limit](#input\_node\_increase\_pod\_limit) | Determines whether prefix delegation is enabled. | `bool` | `true` | no |
 | <a name="input_node_subnet_ids"></a> [node\_subnet\_ids](#input\_node\_subnet\_ids) | A list of default subnet IDs where the `eks_managed_node_groups` will be provisioned. | `list(string)` | `[]` | no |
 | <a name="input_pod_subnet_ids"></a> [pod\_subnet\_ids](#input\_pod\_subnet\_ids) | A list of subnet IDs where the pods will be provisioned. If not provided, the pods (ENIs) will be provisioned in the `node_subnet_ids` subnets. | `list(string)` | `[]` | no |
-| <a name="input_remote_management_target_iam_role_arns"></a> [remote\_management\_target\_iam\_role\_arns](#input\_remote\_management\_target\_iam\_role\_arns) | The name of the IAM roles to assume for remote cluster management | `set(string)` | `[]` | no |
 
 ## Outputs
 

@@ -65,13 +65,13 @@ variable "iam_admin_role" {
   type        = string
 }
 
-variable "iam_cluster_management_role" {
+variable "iam_argo_cd_cluster_management_role" {
   description = "ARN of the cluster management role"
   type        = string
   default     = null
 }
 
-variable "iam_application_management_role" {
+variable "iam_argo_cd_application_management_role" {
   description = "ARN of the application management role"
   type        = string
   default     = null
@@ -221,19 +221,19 @@ variable "cluster_autoscaler_iam_role_name" {
   default     = "cluster-autoscaler"
 }
 
-variable "cluster_management_cluster_name" {
+variable "argo_cd_cluster_management_cluster_name" {
   description = "The name of the cluster management cluster"
   type        = string
   default     = ""
 }
 
-variable "application_management_cluster_name" {
+variable "argo_cd_application_management_cluster_name" {
   description = "The name of the application management cluster"
   type        = string
   default     = ""
 }
 
-variable "remote_management_target_iam_role_arns" {
+variable "argo_cd_remote_target_iam_role_arns" {
   description = "The name of the IAM roles to assume for remote cluster management"
   type        = set(string)
   default     = []
