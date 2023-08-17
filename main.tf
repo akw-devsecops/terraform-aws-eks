@@ -18,7 +18,7 @@ locals {
 
   management_role_map = var.iam_cluster_management_role != null ? [{
     rolearn  = module.argo_cd_client[0].role_arn
-    username = "admin"
+    username = "remote_cluster_management"
     groups   = ["system:masters"]
   }] : []
 
