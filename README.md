@@ -22,6 +22,9 @@ Terraform Module to set up an AWS EKS cluster.
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_argo_cd_application_management_client"></a> [argo\_cd\_application\_management\_client](#module\_argo\_cd\_application\_management\_client) | ./modules/argo-cd-client | n/a |
+| <a name="module_argo_cd_cluster_management_client"></a> [argo\_cd\_cluster\_management\_client](#module\_argo\_cd\_cluster\_management\_client) | ./modules/argo-cd-client | n/a |
+| <a name="module_argo_cd_controller"></a> [argo\_cd\_controller](#module\_argo\_cd\_controller) | ./modules/argo-cd-controller | n/a |
 | <a name="module_aws_ebs_csi_driver"></a> [aws\_ebs\_csi\_driver](#module\_aws\_ebs\_csi\_driver) | ./modules/aws-ebs-csi-driver | n/a |
 | <a name="module_aws_efs_csi_driver"></a> [aws\_efs\_csi\_driver](#module\_aws\_efs\_csi\_driver) | ./modules/aws-efs-csi-driver | n/a |
 | <a name="module_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#module\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
@@ -49,6 +52,9 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.22`) | `string` | n/a | yes |
 | <a name="input_iam_admin_role"></a> [iam\_admin\_role](#input\_iam\_admin\_role) | ARN of the admin role that will be added to `system:masters` | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC where the cluster and its nodes will be provisioned | `string` | n/a | yes |
+| <a name="input_argo_cd_application_management_cluster_name"></a> [argo\_cd\_application\_management\_cluster\_name](#input\_argo\_cd\_application\_management\_cluster\_name) | The name of the application management cluster | `string` | `""` | no |
+| <a name="input_argo_cd_cluster_management_cluster_name"></a> [argo\_cd\_cluster\_management\_cluster\_name](#input\_argo\_cd\_cluster\_management\_cluster\_name) | The name of the cluster management cluster | `string` | `""` | no |
+| <a name="input_argo_cd_remote_target_iam_role_arns"></a> [argo\_cd\_remote\_target\_iam\_role\_arns](#input\_argo\_cd\_remote\_target\_iam\_role\_arns) | The name of the IAM roles to assume for remote cluster management | `set(string)` | `[]` | no |
 | <a name="input_aws_lb_iam_role_name"></a> [aws\_lb\_iam\_role\_name](#input\_aws\_lb\_iam\_role\_name) | The name of the aws-load-balancer-controller IAM role | `string` | `"aws-load-balancer-controller"` | no |
 | <a name="input_cluster_autoscaler_iam_role_name"></a> [cluster\_autoscaler\_iam\_role\_name](#input\_cluster\_autoscaler\_iam\_role\_name) | The name of the cluster-autoscaler IAM role | `string` | `"cluster-autoscaler"` | no |
 | <a name="input_cluster_issuer_letsencrypt_email"></a> [cluster\_issuer\_letsencrypt\_email](#input\_cluster\_issuer\_letsencrypt\_email) | Let's Encrypt will use this to contact you about expiring certificates, and issues related to your account. | `string` | `null` | no |
@@ -74,6 +80,8 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_enable_nginx"></a> [enable\_nginx](#input\_enable\_nginx) | Determines whether to install NGINX Ingress Controller for EKS | `bool` | `true` | no |
 | <a name="input_iam_additional_roles"></a> [iam\_additional\_roles](#input\_iam\_additional\_roles) | List of additional roles maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
 | <a name="input_iam_additional_users"></a> [iam\_additional\_users](#input\_iam\_additional\_users) | List of additional user maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
+| <a name="input_iam_argo_cd_application_management_role"></a> [iam\_argo\_cd\_application\_management\_role](#input\_iam\_argo\_cd\_application\_management\_role) | ARN of the application management role | `string` | `null` | no |
+| <a name="input_iam_argo_cd_cluster_management_role"></a> [iam\_argo\_cd\_cluster\_management\_role](#input\_iam\_argo\_cd\_cluster\_management\_role) | ARN of the cluster management role | `string` | `null` | no |
 | <a name="input_nlb_eip_count"></a> [nlb\_eip\_count](#input\_nlb\_eip\_count) | Determines the number of Elastic IPs used on the network load balancer | `number` | `3` | no |
 | <a name="input_node_increase_pod_limit"></a> [node\_increase\_pod\_limit](#input\_node\_increase\_pod\_limit) | Determines whether prefix delegation is enabled. | `bool` | `true` | no |
 | <a name="input_node_subnet_ids"></a> [node\_subnet\_ids](#input\_node\_subnet\_ids) | A list of default subnet IDs where the `eks_managed_node_groups` will be provisioned. | `list(string)` | `[]` | no |

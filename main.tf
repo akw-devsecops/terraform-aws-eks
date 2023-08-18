@@ -10,6 +10,24 @@ locals {
     ENI_CONFIG_LABEL_DEF               = "topology.kubernetes.io/zone"
   } : {}
 
+  admin_role_map = [{
+    rolearn  = var.iam_admin_role
+    username = "admin"
+    groups   = ["system:masters"]
+  }]
+
+  cluster_management_role_map = var.iam_argo_cd_cluster_management_role != null ? [{
+    rolearn  = module.argo_cd_cluster_management_client[0].role_arn
+    username = "remote-cluster-management"
+    groups   = ["system:masters"]
+  }] : []
+
+  application_management_role_map = var.iam_argo_cd_application_management_role != null ? [{
+    rolearn  = module.argo_cd_application_management_client[0].role_arn
+    username = "remote-application-management"
+    groups   = ["system:masters"]
+  }] : []
+
   corefile = <<EOF
 .:53 {
     errors
@@ -106,13 +124,12 @@ module "eks" {
 
   manage_aws_auth_configmap = true
 
-  aws_auth_roles = concat([
-    {
-      rolearn  = var.iam_admin_role
-      username = "admin"
-      groups   = ["system:masters"]
-    },
-  ], var.iam_additional_roles)
+  aws_auth_roles = concat(
+    local.admin_role_map,
+    local.cluster_management_role_map,
+    local.application_management_role_map,
+    var.iam_additional_roles
+  )
 
   aws_auth_users = var.iam_additional_users
 }

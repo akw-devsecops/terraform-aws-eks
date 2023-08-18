@@ -80,3 +80,31 @@ module "nginx" {
 
   nlb_eip_count = var.nlb_eip_count
 }
+
+module "argo_cd_cluster_management_client" {
+  source = "./modules/argo-cd-client"
+
+  count = var.iam_argo_cd_cluster_management_role != null ? 1 : 0
+
+  remote_cluster_name = var.argo_cd_cluster_management_cluster_name
+  trusted_role_arn    = var.iam_argo_cd_cluster_management_role
+}
+
+module "argo_cd_application_management_client" {
+  source = "./modules/argo-cd-client"
+
+  count = var.iam_argo_cd_application_management_role != null ? 1 : 0
+
+  remote_cluster_name = var.argo_cd_application_management_cluster_name
+  trusted_role_arn    = var.iam_argo_cd_application_management_role
+}
+
+module "argo_cd_controller" {
+  source = "./modules/argo-cd-controller"
+
+  count = length(var.argo_cd_remote_target_iam_role_arns) > 0 ? 1 : 0
+
+  cluster_name                    = module.eks.cluster_name
+  oidc_provider_arn               = module.eks.oidc_provider_arn
+  remote_management_iam_role_arns = var.argo_cd_remote_target_iam_role_arns
+}
