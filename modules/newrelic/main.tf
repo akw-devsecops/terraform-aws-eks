@@ -120,7 +120,7 @@ resource "helm_release" "this" {
 
   set {
     name  = "nri-kube-events.resources.limits.memory"
-    value = "64Mi"
+    value = "128Mi"
   }
 
   set {
