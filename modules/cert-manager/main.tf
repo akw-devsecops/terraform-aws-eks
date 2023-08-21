@@ -68,7 +68,7 @@ resource "kubernetes_manifest" "cluster_issuer_lets_encrypt" {
           {
             http01 = {
               ingress = {
-                class = "nginx"
+                ingressClassName = "nginx"
               }
             }
           },
