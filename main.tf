@@ -28,6 +28,22 @@ locals {
     groups   = ["system:masters"]
   }] : []
 
+  coredns_tolerations = [
+    {
+      key      = "CriticalAddonsOnly",
+      operator = "Exists"
+    },
+    {
+      key      = "node-role.kubernetes.io/master",
+      operator = "NoSchedule"
+    },
+    {
+      key    = "arch"
+      value  = "arm64"
+      effect = "NoSchedule"
+    }
+  ]
+
   corefile = <<EOF
 .:53 {
     errors
@@ -71,7 +87,8 @@ module "eks" {
     coredns = {
       most_recent = true
       configuration_values = jsonencode({
-        corefile = local.corefile
+        corefile    = local.corefile
+        tolerations = local.coredns_tolerations
       })
     }
   }
