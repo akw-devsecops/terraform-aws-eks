@@ -28,21 +28,11 @@ locals {
     groups   = ["system:masters"]
   }] : []
 
-  coredns_tolerations = [
-    {
-      key      = "CriticalAddonsOnly",
-      operator = "Exists"
-    },
-    {
-      key      = "node-role.kubernetes.io/master",
-      operator = "NoSchedule"
-    },
-    {
-      key    = "arch"
-      value  = "arm64"
-      effect = "NoSchedule"
-    }
-  ]
+  coredns_tolerations = [{
+    key    = "arch"
+    value  = "arm64"
+    effect = "NoSchedule"
+  }]
 
   corefile = <<EOF
 .:53 {
