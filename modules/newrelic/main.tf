@@ -11,7 +11,7 @@ resource "helm_release" "this" {
   repository = "https://helm-charts.newrelic.com"
   chart      = "nri-bundle"
   namespace  = "kube-system"
-  version    = "5.0.45"
+  version    = "5.0.46"
 
   set_sensitive {
     name  = "global.licenseKey"
