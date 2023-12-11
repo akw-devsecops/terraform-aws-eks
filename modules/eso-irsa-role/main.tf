@@ -5,7 +5,9 @@ module "aws_eso_irsa_role" {
   version = "~> 5.0"
 
   role_name             = var.iam_role_name
-  attach_efs_csi_policy = true
+  role_policy_arns = {
+    eso_tools_operator_policy = aws_iam_policy.this.arn
+  }
 
   oidc_providers = {
     sts = {
@@ -13,4 +15,17 @@ module "aws_eso_irsa_role" {
       namespace_service_accounts = ["system:serviceaccount:tools:eso-operator"]
     }
   }
+}
+
+data "aws_iam_policy_document" "this" {
+  statement {
+    effect    = "Allow"
+    actions   = ["sts:AssumeRole"]
+    resources =  "*"
+  }
+}
+
+resource "aws_iam_policy" "this" {
+  name   = "eso-tools-operator-policy"
+  policy = data.aws_iam_policy_document.this.json
 }
