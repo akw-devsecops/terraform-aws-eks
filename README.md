@@ -32,6 +32,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="module_cert_manager"></a> [cert\_manager](#module\_cert\_manager) | ./modules/cert-manager | n/a |
 | <a name="module_cluster_autoscaler"></a> [cluster\_autoscaler](#module\_cluster\_autoscaler) | ./modules/cluster-autoscaler | n/a |
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 19.0 |
+| <a name="module_eso_irsa_role"></a> [eso\_irsa\_role](#module\_eso\_irsa\_role) | ./modules/eso-irsa-role | n/a |
 | <a name="module_metrics_server"></a> [metrics\_server](#module\_metrics\_server) | ./modules/metrics-server | n/a |
 | <a name="module_newrelic"></a> [newrelic](#module\_newrelic) | ./modules/newrelic | n/a |
 | <a name="module_nginx"></a> [nginx](#module\_nginx) | ./modules/nginx | n/a |
@@ -68,6 +69,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_enable_aws_ebs_csi_driver_role"></a> [enable\_aws\_ebs\_csi\_driver\_role](#input\_enable\_aws\_ebs\_csi\_driver\_role) | Determines whether to install EBS CSI Driver IRSA | `bool` | `true` | no |
 | <a name="input_enable_aws_efs_csi_driver"></a> [enable\_aws\_efs\_csi\_driver](#input\_enable\_aws\_efs\_csi\_driver) | Determines whether to install EFS CSI Driver for EKS | `bool` | `false` | no |
 | <a name="input_enable_aws_efs_csi_driver_role"></a> [enable\_aws\_efs\_csi\_driver\_role](#input\_enable\_aws\_efs\_csi\_driver\_role) | Determines whether to install EFS CSI Driver IRSA | `bool` | `false` | no |
+| <a name="input_enable_aws_eso_role"></a> [enable\_aws\_eso\_role](#input\_enable\_aws\_eso\_role) | Determines whether to install External Secrets Operator IRSA | `bool` | `false` | no |
 | <a name="input_enable_aws_load_balancer_controller"></a> [enable\_aws\_load\_balancer\_controller](#input\_enable\_aws\_load\_balancer\_controller) | Determines whether to install AWS Load Balancer Controller for EKS | `bool` | `true` | no |
 | <a name="input_enable_aws_load_balancer_controller_role"></a> [enable\_aws\_load\_balancer\_controller\_role](#input\_enable\_aws\_load\_balancer\_controller\_role) | Determines whether to install AWS Load Balancer Controller IRSA | `bool` | `true` | no |
 | <a name="input_enable_calico"></a> [enable\_calico](#input\_enable\_calico) | Determines whether to install Calico for EKS | `bool` | `true` | no |
@@ -78,6 +80,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_enable_metrics_server"></a> [enable\_metrics\_server](#input\_enable\_metrics\_server) | Determines whether to install Metrics Server for EKS | `bool` | `true` | no |
 | <a name="input_enable_newrelic"></a> [enable\_newrelic](#input\_enable\_newrelic) | Determines whether to install Newrelic for EKS | `bool` | `true` | no |
 | <a name="input_enable_nginx"></a> [enable\_nginx](#input\_enable\_nginx) | Determines whether to install NGINX Ingress Controller for EKS | `bool` | `true` | no |
+| <a name="input_eso_iam_role_name"></a> [eso\_iam\_role\_name](#input\_eso\_iam\_role\_name) | The name of the eso IAM role | `string` | `"eso-operator"` | no |
 | <a name="input_iam_additional_roles"></a> [iam\_additional\_roles](#input\_iam\_additional\_roles) | List of additional roles maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
 | <a name="input_iam_additional_users"></a> [iam\_additional\_users](#input\_iam\_additional\_users) | List of additional user maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
 | <a name="input_iam_argo_cd_application_management_role"></a> [iam\_argo\_cd\_application\_management\_role](#input\_iam\_argo\_cd\_application\_management\_role) | ARN of the application management role | `string` | `null` | no |

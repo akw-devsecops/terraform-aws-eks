@@ -176,6 +176,12 @@ variable "enable_aws_efs_csi_driver_role" {
   default     = false
 }
 
+variable "enable_aws_eso_role" {
+  description = "Determines whether to install External Secrets Operator IRSA"
+  type        = bool
+  default     = false
+}
+
 ################################################################################
 # Addon config
 ################################################################################
@@ -219,6 +225,12 @@ variable "cluster_autoscaler_iam_role_name" {
   description = "The name of the cluster-autoscaler IAM role"
   type        = string
   default     = "cluster-autoscaler"
+}
+
+variable "eso_iam_role_name" {
+  description = "The name of the eso IAM role"
+  type        = string
+  default     = "eso-operator"
 }
 
 variable "argo_cd_cluster_management_cluster_name" {
