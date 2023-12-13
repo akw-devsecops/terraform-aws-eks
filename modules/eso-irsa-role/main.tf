@@ -6,7 +6,7 @@ module "aws_eso_irsa_role" {
 
   role_name             = var.iam_role_name
   role_policy_arns = {
-    eso_tools_operator_policy = aws_iam_policy.this.arn
+    eso_tools_operator_policy = aws_iam_policy.this[0].arn
   }
 
   oidc_providers = {
@@ -26,6 +26,8 @@ data "aws_iam_policy_document" "this" {
 }
 
 resource "aws_iam_policy" "this" {
+  count = var.enable_aws_eso_role ? 1 : 0
+
   name   = "eso-tools-operator-policy"
   policy = data.aws_iam_policy_document.this.json
 }
