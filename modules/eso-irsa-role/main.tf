@@ -4,7 +4,7 @@ module "aws_eso_irsa_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.0"
 
-  role_name             = var.iam_role_name
+  role_name = var.iam_role_name
   role_policy_arns = {
     eso_tools_operator_policy = aws_iam_policy.this[0].arn
   }
@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "this" {
   statement {
     effect    = "Allow"
     actions   = ["sts:AssumeRole"]
-    resources =  ["*"]
+    resources = ["*"]
   }
 }
 
