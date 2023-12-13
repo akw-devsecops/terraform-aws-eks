@@ -5,7 +5,7 @@ resource "helm_release" "this" {
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
   namespace  = "kube-system"
-  version    = "v1.13.2"
+  version    = "v1.13.3"
 
   set {
     name  = "installCRDs"
