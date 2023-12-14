@@ -10,7 +10,7 @@ module "aws_efs_csi_irsa_role" {
   oidc_providers = {
     sts = {
       provider_arn               = var.oidc_provider_arn
-      namespace_service_accounts = ["kube-system:efs-csi-controller-sa"]
+      namespace_service_accounts = ["kube-system:efs-csi-controller-sa", "kube-system:efs-csi-node-sa"]
     }
   }
 }
