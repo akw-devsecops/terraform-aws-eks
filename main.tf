@@ -106,6 +106,10 @@ module "eks" {
 
   eks_managed_node_groups = var.eks_managed_node_groups
 
+  kms_key_administrators = [data.aws_iam_session_context.current.issuer_arn, "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/SAML-AKW-ADMIN"]
+
+  kms_key_aliases = var.kms_key_aliases
+
   node_security_group_tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = null
   }
@@ -148,6 +152,12 @@ data "aws_subnet" "pods" {
   for_each = toset(var.pod_subnet_ids)
 
   id = each.key
+}
+
+data "aws_caller_identity" "current" {}
+
+data "aws_iam_session_context" "current" {
+  arn = data.aws_caller_identity.current.arn
 }
 
 resource "kubernetes_manifest" "eni_configs" {
