@@ -63,7 +63,11 @@ variable "kms_key_aliases" {
   default     = []
 }
 
-
+variable "kms_key_administrators" {
+  description = "A list of IAM ARNs for [key administrators](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html#key-policy-default-allow-administrators). The current caller identity is always used to ensure at least one key admin is available"
+  type        = list(string)
+  default     = []
+}
 
 ################################################################################
 # aws-auth configmap
