@@ -106,7 +106,7 @@ module "eks" {
 
   eks_managed_node_groups = var.eks_managed_node_groups
 
-  kms_key_administrators = coalesce([data.aws_iam_session_context.current.issuer_arn], var.kms_key_administrators)
+  kms_key_administrators = concat([data.aws_iam_session_context.current.issuer_arn], var.kms_key_administrators)
 
   kms_key_aliases = var.kms_key_aliases
 
