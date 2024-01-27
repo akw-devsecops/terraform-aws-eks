@@ -9,7 +9,7 @@ resource "helm_release" "this" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
   namespace  = "kube-system"
-  version    = "4.9.0"
+  version    = "4.9.1"
 
   set {
     name  = "controller.resources.requests.memory"
