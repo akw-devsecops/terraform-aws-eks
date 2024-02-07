@@ -5,7 +5,7 @@ resource "helm_release" "this" {
   chart      = "metrics-server"
   namespace  = "kube-system"
   repository = "https://kubernetes-sigs.github.io/metrics-server"
-  version    = "3.11.0"
+  version    = "3.12.0"
 
   set {
     name  = "resources.requests.cpu"
