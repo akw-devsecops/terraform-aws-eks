@@ -5,7 +5,7 @@ resource "helm_release" "this" {
   repository = "https://docs.projectcalico.org/charts"
   chart      = "tigera-operator"
   namespace  = "kube-system"
-  version    = "v3.27.0"
+  version    = "v3.27.2"
 
   set {
     name  = "installation.kubernetesProvider"
