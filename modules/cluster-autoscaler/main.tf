@@ -33,7 +33,7 @@ resource "helm_release" "this" {
   chart      = "cluster-autoscaler"
   namespace  = "kube-system"
   repository = "https://kubernetes.github.io/autoscaler"
-  version    = "9.34.1"
+  version    = "9.35.0"
 
   set {
     name  = "image.tag"
