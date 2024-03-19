@@ -39,11 +39,6 @@ resource "helm_release" "this" {
   }
 
   set {
-    name  = "nri-metadata-injection.resources.limits.memory"
-    value = "64Mi"
-  }
-
-  set {
     name  = "newrelic-infrastructure.privileged"
     value = true
   }
@@ -59,22 +54,12 @@ resource "helm_release" "this" {
   }
 
   set {
-    name  = "newrelic-infrastructure.kubelet.resources.limits.memory"
-    value = "128Mi"
-  }
-
-  set {
     name  = "newrelic-infrastructure.ksm.resources.requests.cpu"
     value = "10m"
   }
 
   set {
     name  = "newrelic-infrastructure.ksm.resources.requests.memory"
-    value = "128Mi"
-  }
-
-  set {
-    name  = "newrelic-infrastructure.ksm.resources.limits.memory"
     value = "128Mi"
   }
 
@@ -99,11 +84,6 @@ resource "helm_release" "this" {
   }
 
   set {
-    name  = "kube-state-metrics.resources.limits.memory"
-    value = "128Mi"
-  }
-
-  set {
     name  = "nri-kube-events.enabled"
     value = true
   }
@@ -116,11 +96,6 @@ resource "helm_release" "this" {
   set {
     name  = "nri-kube-events.resources.requests.memory"
     value = "64Mi"
-  }
-
-  set {
-    name  = "nri-kube-events.resources.limits.memory"
-    value = "128Mi"
   }
 
   set {
@@ -140,11 +115,6 @@ resource "helm_release" "this" {
 
   set {
     name  = "newrelic-logging.resources.requests.memory"
-    value = "64Mi"
-  }
-
-  set {
-    name  = "newrelic-logging.resources.limits.memory"
     value = "64Mi"
   }
 }
