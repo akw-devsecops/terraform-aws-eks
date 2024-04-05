@@ -22,7 +22,7 @@ resource "helm_release" "this" {
   repository = "https://kubernetes-sigs.github.io/aws-efs-csi-driver"
   chart      = "aws-efs-csi-driver"
   namespace  = "kube-system"
-  version    = "2.5.6"
+  version    = "2.5.7"
 
   set {
     name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
