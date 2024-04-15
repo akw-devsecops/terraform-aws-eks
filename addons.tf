@@ -25,12 +25,6 @@ module "aws_load_balancer_controller" {
   iam_role_name     = var.aws_lb_iam_role_name
 }
 
-module "calico" {
-  source = "./modules/calico"
-
-  enable_calico = var.enable_calico
-}
-
 module "cert_manager" {
   source = "./modules/cert-manager"
 
