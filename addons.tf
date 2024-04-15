@@ -35,14 +35,6 @@ module "cluster_autoscaler" {
   iam_role_name     = var.cluster_autoscaler_iam_role_name
 }
 
-module "newrelic" {
-  source = "./modules/newrelic"
-
-  enable_newrelic = var.enable_newrelic
-
-  cluster_name = module.eks.cluster_name
-}
-
 module "nginx" {
   source = "./modules/nginx"
 
