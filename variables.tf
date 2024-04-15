@@ -96,19 +96,19 @@ variable "iam_additional_users" {
 variable "enable_cluster_autoscaler_role" {
   description = "Determines whether to install Cluster Autoscaler IRSA"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "enable_aws_load_balancer_controller_role" {
   description = "Determines whether to install AWS Load Balancer Controller IRSA"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "enable_aws_ebs_csi_driver_role" {
   description = "Determines whether to install EBS CSI Driver IRSA"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "enable_aws_efs_csi_driver_role" {
