@@ -31,7 +31,6 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="module_cluster_autoscaler"></a> [cluster\_autoscaler](#module\_cluster\_autoscaler) | ./modules/cluster-autoscaler | n/a |
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 19.0 |
 | <a name="module_eso_irsa_role"></a> [eso\_irsa\_role](#module\_eso\_irsa\_role) | ./modules/eso-irsa-role | n/a |
-| <a name="module_metrics_server"></a> [metrics\_server](#module\_metrics\_server) | ./modules/metrics-server | n/a |
 | <a name="module_newrelic"></a> [newrelic](#module\_newrelic) | ./modules/newrelic | n/a |
 | <a name="module_nginx"></a> [nginx](#module\_nginx) | ./modules/nginx | n/a |
 

@@ -35,12 +35,6 @@ module "cluster_autoscaler" {
   iam_role_name     = var.cluster_autoscaler_iam_role_name
 }
 
-module "metrics_server" {
-  source = "./modules/metrics-server"
-
-  enable_metrics_server = var.enable_metrics_server
-}
-
 module "newrelic" {
   source = "./modules/newrelic"
 
