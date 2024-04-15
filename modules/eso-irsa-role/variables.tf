@@ -1,7 +1,7 @@
 variable "enable_aws_eso_role" {
   description = "Determines whether to install External Secrets Operator IRSA"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "oidc_provider_arn" {
