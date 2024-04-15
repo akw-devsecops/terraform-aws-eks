@@ -28,12 +28,9 @@ module "aws_load_balancer_controller" {
 module "cluster_autoscaler" {
   source = "./modules/cluster-autoscaler"
 
-  enable_cluster_autoscaler      = var.enable_cluster_autoscaler
   enable_cluster_autoscaler_role = var.enable_cluster_autoscaler_role
 
-  aws_region        = var.aws_region
   cluster_name      = module.eks.cluster_name
-  cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
   iam_role_name     = var.cluster_autoscaler_iam_role_name
 }
