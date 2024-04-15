@@ -1,11 +1,8 @@
 module "aws_ebs_csi_driver" {
   source = "./modules/aws-ebs-csi-driver"
 
-  enable_aws_ebs_csi_driver      = var.enable_aws_ebs_csi_driver
   enable_aws_ebs_csi_driver_role = var.enable_aws_ebs_csi_driver_role
 
-  cluster_name      = module.eks.cluster_name
-  cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
   iam_role_name     = var.ebs_iam_role_name
 }
