@@ -110,6 +110,6 @@ module "eso_irsa_role" {
   source = "./modules/eso-irsa-role"
 
   enable_aws_eso_role = var.enable_aws_eso_role
-  oidc_provider_arn = module.eks.oidc_provider_arn
-  iam_role_name = var.eso_iam_role_name
+  oidc_provider_arn   = module.eks.oidc_provider_arn
+  iam_role_name       = var.eso_iam_role_name
 }
