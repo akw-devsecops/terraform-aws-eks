@@ -25,15 +25,6 @@ module "aws_load_balancer_controller" {
   iam_role_name     = var.aws_lb_iam_role_name
 }
 
-module "cert_manager" {
-  source = "./modules/cert-manager"
-
-  enable_cert_manager = var.enable_cert_manager
-
-  enable_cluster_issuer_letsencrypt = var.enable_cluster_issuer_letsencrypt
-  cluster_issuer_letsencrypt_email  = var.cluster_issuer_letsencrypt_email
-}
-
 module "cluster_autoscaler" {
   source = "./modules/cluster-autoscaler"
 
