@@ -1,8 +1,3 @@
-variable "aws_region" {
-  description = "The AWS region"
-  type        = string
-}
-
 ################################################################################
 # Cluster
 ################################################################################
@@ -49,12 +44,6 @@ variable "node_increase_pod_limit" {
   description = "Determines whether prefix delegation is enabled."
   type        = bool
   default     = true
-}
-
-variable "default_pod_security_policy" {
-  description = "Configures the default pod security policy. Valid values are privileged, baseline or restricted."
-  type        = string
-  default     = "baseline"
 }
 
 variable "kms_key_aliases" {
@@ -104,80 +93,20 @@ variable "iam_additional_users" {
 ################################################################################
 # Addons
 ################################################################################
-variable "enable_metrics_server" {
-  description = "Determines whether to install Metrics Server for EKS"
-  type        = bool
-  default     = true
-}
-
-variable "enable_cluster_autoscaler" {
-  description = "Determines whether to install Cluster Autoscaler for EKS"
-  type        = bool
-  default     = true
-}
-
 variable "enable_cluster_autoscaler_role" {
   description = "Determines whether to install Cluster Autoscaler IRSA"
   type        = bool
-  default     = true
-}
-
-variable "enable_aws_load_balancer_controller" {
-  description = "Determines whether to install AWS Load Balancer Controller for EKS"
-  type        = bool
-  default     = true
+  default     = false
 }
 
 variable "enable_aws_load_balancer_controller_role" {
   description = "Determines whether to install AWS Load Balancer Controller IRSA"
   type        = bool
-  default     = true
-}
-
-variable "enable_cert_manager" {
-  description = "Determines whether to install Cert Manager for EKS"
-  type        = bool
-  default     = true
-}
-
-variable "enable_cluster_issuer_letsencrypt" {
-  description = "Determines whether to create the LetsEncrypt ClusterIssuer. Can only work when Cert Manager is already set up"
-  type        = bool
-  default     = true
-}
-
-variable "enable_calico" {
-  description = "Determines whether to install Calico for EKS"
-  type        = bool
-  default     = true
-}
-
-variable "enable_nginx" {
-  description = "Determines whether to install NGINX Ingress Controller for EKS"
-  type        = bool
-  default     = true
-}
-
-variable "enable_newrelic" {
-  description = "Determines whether to install Newrelic for EKS"
-  type        = bool
-  default     = true
-}
-
-variable "enable_aws_ebs_csi_driver" {
-  description = "Determines whether to install EBS CSI Driver for EKS"
-  type        = bool
-  default     = true
+  default     = false
 }
 
 variable "enable_aws_ebs_csi_driver_role" {
   description = "Determines whether to install EBS CSI Driver IRSA"
-  type        = bool
-  default     = true
-}
-
-variable "enable_aws_efs_csi_driver" {
-  description = "Determines whether to install EFS CSI Driver for EKS"
   type        = bool
   default     = false
 }
@@ -201,12 +130,6 @@ variable "nlb_eip_count" {
   description = "Determines the number of Elastic IPs used on the network load balancer"
   type        = number
   default     = 3
-}
-
-variable "cluster_issuer_letsencrypt_email" {
-  description = "Let's Encrypt will use this to contact you about expiring certificates, and issues related to your account."
-  type        = string
-  default     = null
 }
 
 variable "coredns_additional_zones" {

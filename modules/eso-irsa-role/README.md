@@ -29,7 +29,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | The ARN of the OIDC Provider | `string` | n/a | yes |
-| <a name="input_enable_aws_eso_role"></a> [enable\_aws\_eso\_role](#input\_enable\_aws\_eso\_role) | Determines whether to install External Secrets Operator IRSA | `bool` | `false` | no |
+| <a name="input_enable_aws_eso_role"></a> [enable\_aws\_eso\_role](#input\_enable\_aws\_eso\_role) | Determines whether to install External Secrets Operator IRSA | `bool` | `true` | no |
 | <a name="input_iam_role_name"></a> [iam\_role\_name](#input\_iam\_role\_name) | The name of the IAM role | `string` | `"eso-operator"` | no |
 
 ## Outputs

@@ -7,9 +7,7 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
+No providers.
 
 ## Modules
 
@@ -19,16 +17,13 @@ No requirements.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [helm_release.this](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+No resources.
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | The ARN of the OIDC Provider | `string` | n/a | yes |
-| <a name="input_enable_aws_efs_csi_driver"></a> [enable\_aws\_efs\_csi\_driver](#input\_enable\_aws\_efs\_csi\_driver) | Determines whether to install EFS CSI Driver for EKS | `bool` | `true` | no |
 | <a name="input_enable_aws_efs_csi_driver_role"></a> [enable\_aws\_efs\_csi\_driver\_role](#input\_enable\_aws\_efs\_csi\_driver\_role) | Determines whether to install EFS CSI Driver IRSA | `bool` | `true` | no |
 | <a name="input_iam_role_name"></a> [iam\_role\_name](#input\_iam\_role\_name) | The name of the IAM role | `string` | `"efs-csi"` | no |
 
