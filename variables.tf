@@ -126,6 +126,12 @@ variable "enable_aws_eso_role" {
 ################################################################################
 # Addon config
 ################################################################################
+variable "enable_network_policies" {
+  description = "Determines whether to use network policies"
+  type        = bool
+  default     = false
+}
+
 variable "nlb_eip_count" {
   description = "Determines the number of Elastic IPs used on the network load balancer"
   type        = number
