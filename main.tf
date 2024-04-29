@@ -74,7 +74,7 @@ module "eks" {
     vpc-cni = {
       most_recent = true
       configuration_values = jsonencode({
-        enableNetworkPolicy = var.enable_network_policies
+        enableNetworkPolicy = tostring(var.enable_network_policies)
         env                 = merge(local.prefix_delegation_configuration, local.custom_networking_configuration)
       })
     }
