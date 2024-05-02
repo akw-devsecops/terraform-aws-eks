@@ -161,18 +161,6 @@ module "eks" {
   aws_auth_users = var.iam_additional_users
 }
 
-data "aws_subnet" "pods" {
-  for_each = toset(var.pod_subnet_ids)
-
-  id = each.key
-}
-
-data "aws_caller_identity" "current" {}
-
-data "aws_iam_session_context" "current" {
-  arn = data.aws_caller_identity.current.arn
-}
-
 locals {
   taint_effects = {
     NO_SCHEDULE        = "NoSchedule"
