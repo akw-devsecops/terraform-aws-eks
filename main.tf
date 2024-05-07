@@ -10,6 +10,15 @@ locals {
     ENI_CONFIG_LABEL_DEF               = "topology.kubernetes.io/zone"
   } : {}
 
+  eni_config = {
+    create = true
+    region = data.aws_region.current.name
+    subnets = { for id, subnet in data.aws_subnet.pods : subnet.availability_zone => {
+      id             = id,
+      securityGroups = [module.eks.cluster_primary_security_group_id]
+    } }
+  }
+
   admin_role_map = [{
     rolearn  = var.iam_admin_role
     username = "admin"
@@ -73,9 +82,13 @@ module "eks" {
     }
     vpc-cni = {
       most_recent = true
-      configuration_values = jsonencode({
+      configuration_values = jsonencode(merge({
         env = merge(local.prefix_delegation_configuration, local.custom_networking_configuration)
-      })
+        },
+        length(var.pod_subnet_ids) > 0 ? {
+          eniConfig = local.eni_config
+        } : {}
+      ))
     }
     coredns = {
       most_recent = true
@@ -146,34 +159,6 @@ module "eks" {
   )
 
   aws_auth_users = var.iam_additional_users
-}
-
-data "aws_subnet" "pods" {
-  for_each = toset(var.pod_subnet_ids)
-
-  id = each.key
-}
-
-data "aws_caller_identity" "current" {}
-
-data "aws_iam_session_context" "current" {
-  arn = data.aws_caller_identity.current.arn
-}
-
-resource "kubernetes_manifest" "eni_configs" {
-  for_each = data.aws_subnet.pods
-
-  manifest = {
-    apiVersion = "crd.k8s.amazonaws.com/v1alpha1"
-    kind       = "ENIConfig"
-    metadata = {
-      name = each.value.availability_zone
-    }
-    spec = {
-      securityGroups = [module.eks.cluster_primary_security_group_id]
-      subnet         = each.value.id
-    }
-  }
 }
 
 locals {
