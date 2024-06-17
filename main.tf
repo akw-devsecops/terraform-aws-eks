@@ -75,6 +75,8 @@ module "eks" {
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
+  vpc_id                          = var.vpc_id
+  control_plane_subnet_ids        = var.control_plane_subnet_ids
 
   cluster_addons = {
     kube-proxy = {
@@ -98,9 +100,6 @@ module "eks" {
       })
     }
   }
-
-  vpc_id                   = var.vpc_id
-  control_plane_subnet_ids = var.control_plane_subnet_ids
 
   eks_managed_node_group_defaults = {
     attach_cluster_primary_security_group = true
