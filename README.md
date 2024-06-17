@@ -7,14 +7,14 @@ Terraform Module to set up an AWS EKS cluster.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.47 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.40 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.47 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.40 |
 
 ## Modules
 
@@ -27,7 +27,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="module_aws_efs_csi_driver"></a> [aws\_efs\_csi\_driver](#module\_aws\_efs\_csi\_driver) | ./modules/aws-efs-csi-driver | n/a |
 | <a name="module_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#module\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
 | <a name="module_cluster_autoscaler"></a> [cluster\_autoscaler](#module\_cluster\_autoscaler) | ./modules/cluster-autoscaler | n/a |
-| <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 19.0 |
+| <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | ~> 20.0 |
 | <a name="module_eso_irsa_role"></a> [eso\_irsa\_role](#module\_eso\_irsa\_role) | ./modules/eso-irsa-role | n/a |
 | <a name="module_nginx"></a> [nginx](#module\_nginx) | ./modules/nginx | n/a |
 
