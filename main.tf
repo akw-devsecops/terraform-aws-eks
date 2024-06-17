@@ -73,6 +73,9 @@ module "eks" {
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
+  # Required as long as this module manages the aws-auth configmap
+  enable_cluster_creator_admin_permissions = true
+
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
   vpc_id                          = var.vpc_id
