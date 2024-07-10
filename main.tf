@@ -68,13 +68,18 @@ EOF
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.0"
+  version = "~> 20.0"
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
+  # Required as long as this module manages the aws-auth configmap
+  enable_cluster_creator_admin_permissions = true
+
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
+  vpc_id                          = var.vpc_id
+  control_plane_subnet_ids        = var.control_plane_subnet_ids
 
   cluster_addons = {
     kube-proxy = {
@@ -99,9 +104,6 @@ module "eks" {
     }
   }
 
-  vpc_id                   = var.vpc_id
-  control_plane_subnet_ids = var.control_plane_subnet_ids
-
   eks_managed_node_group_defaults = {
     attach_cluster_primary_security_group = true
     subnet_ids                            = var.node_subnet_ids
@@ -119,9 +121,9 @@ module "eks" {
 
   eks_managed_node_groups = var.eks_managed_node_groups
 
-  kms_key_administrators = concat([data.aws_iam_session_context.current.issuer_arn], var.kms_key_administrators)
-
-  kms_key_aliases = var.kms_key_aliases
+  kms_key_enable_default_policy = false
+  kms_key_administrators        = concat([data.aws_iam_session_context.current.issuer_arn], var.kms_key_administrators)
+  kms_key_aliases               = var.kms_key_aliases
 
   node_security_group_tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = null
@@ -148,9 +150,13 @@ module "eks" {
       self        = true
     }
   }
+}
+
+module "aws_auth" {
+  source  = "terraform-aws-modules/eks/aws//modules/aws-auth"
+  version = "~> 20.0"
 
   manage_aws_auth_configmap = true
-
   aws_auth_roles = concat(
     local.admin_role_map,
     local.cluster_management_role_map,
