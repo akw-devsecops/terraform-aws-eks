@@ -58,6 +58,12 @@ variable "kms_key_administrators" {
   default     = []
 }
 
+variable "enable_cluster_creator_admin_permissions" {
+  description = "Indicates whether or not to add the cluster creator (the identity used by Terraform) as an administrator via access entry"
+  type        = bool
+  default     = false
+}
+
 ################################################################################
 # aws-auth configmap
 ################################################################################

@@ -65,6 +65,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_enable_aws_eso_role"></a> [enable\_aws\_eso\_role](#input\_enable\_aws\_eso\_role) | Determines whether to install External Secrets Operator IRSA | `bool` | `false` | no |
 | <a name="input_enable_aws_load_balancer_controller_role"></a> [enable\_aws\_load\_balancer\_controller\_role](#input\_enable\_aws\_load\_balancer\_controller\_role) | Determines whether to install AWS Load Balancer Controller IRSA | `bool` | `false` | no |
 | <a name="input_enable_cluster_autoscaler_role"></a> [enable\_cluster\_autoscaler\_role](#input\_enable\_cluster\_autoscaler\_role) | Determines whether to install Cluster Autoscaler IRSA | `bool` | `false` | no |
+| <a name="input_enable_cluster_creator_admin_permissions"></a> [enable\_cluster\_creator\_admin\_permissions](#input\_enable\_cluster\_creator\_admin\_permissions) | Indicates whether or not to add the cluster creator (the identity used by Terraform) as an administrator via access entry | `bool` | `false` | no |
 | <a name="input_eso_iam_role_name"></a> [eso\_iam\_role\_name](#input\_eso\_iam\_role\_name) | The name of the eso IAM role | `string` | `"eso-operator"` | no |
 | <a name="input_iam_additional_roles"></a> [iam\_additional\_roles](#input\_iam\_additional\_roles) | List of additional roles maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
 | <a name="input_iam_additional_users"></a> [iam\_additional\_users](#input\_iam\_additional\_users) | List of additional user maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
