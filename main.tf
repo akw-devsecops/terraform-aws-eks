@@ -74,7 +74,7 @@ module "eks" {
   cluster_version = var.cluster_version
 
   # Required as long as this module manages the aws-auth configmap
-  enable_cluster_creator_admin_permissions = true
+  enable_cluster_creator_admin_permissions = var.enable_cluster_creator_admin_permissions
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
