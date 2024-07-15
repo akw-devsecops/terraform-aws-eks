@@ -46,6 +46,61 @@ locals {
 ${var.coredns_additional_zones}
 EOF
 
+  admin_role = {
+    admin = {
+      principal_arn = var.iam_admin_role
+      policy_associations = {
+        admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+  }
+
+  argo_cd_cluster_management = var.iam_argo_cd_cluster_management_role != null ? {
+    cluster_management = {
+      principal_arn = module.argo_cd_cluster_management_client[0].role_arn
+      policy_associations = {
+        admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+  } : {}
+
+  argo_cd_application_management = var.iam_argo_cd_application_management_role != null ? {
+    application_management = {
+      principal_arn = module.argo_cd_application_management_client[0].role_arn
+      policy_associations = {
+        admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+  } : {}
+
+  additional_roles = {
+    for role in var.iam_additional_roles : role.username => {
+      principal_arn     = role.userarn
+      kubernetes_groups = role.groups
+    }
+  }
+
+  additional_users = {
+    for user in var.iam_additional_users : user.username => {
+      principal_arn     = user.userarn
+      kubernetes_groups = user.groups
+    }
+  }
 }
 
 module "eks" {
@@ -134,58 +189,12 @@ module "eks" {
   }
 
   access_entries = merge(
-    {
-      admin = {
-        principal_arn = var.iam_admin_role
-        policy_associations = {
-          admin = {
-            policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-            access_scope = {
-              type = "cluster"
-            }
-          }
-        }
-      }
-    },
-    var.iam_argo_cd_cluster_management_role != null ? {
-      cluster_management = {
-        principal_arn = module.argo_cd_cluster_management_client[0].role_arn
-        policy_associations = {
-          admin = {
-            policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-            access_scope = {
-              type = "cluster"
-            }
-          }
-        }
-      }
-    } : {},
-    var.iam_argo_cd_application_management_role != null ? {
-      application_management = {
-        principal_arn = module.argo_cd_application_management_client[0].role_arn
-        policy_associations = {
-          admin = {
-            policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-            access_scope = {
-              type = "cluster"
-            }
-          }
-        }
-      }
-    } : {},
+    local.admin_role,
+    local.argo_cd_cluster_management,
+    local.argo_cd_application_management,
+    local.additional_roles,
+    local.additional_users,
   )
-}
-
-module "aws_auth" {
-  source  = "terraform-aws-modules/eks/aws//modules/aws-auth"
-  version = "~> 20.0"
-
-  manage_aws_auth_configmap = true
-  aws_auth_roles = concat(
-    var.iam_additional_roles
-  )
-
-  aws_auth_users = var.iam_additional_users
 }
 
 locals {
