@@ -87,18 +87,6 @@ variable "iam_argo_cd_application_management_role" {
   default     = null
 }
 
-variable "iam_additional_roles" {
-  description = "List of additional roles maps to add to the aws-auth configmap"
-  type        = list(any)
-  default     = []
-}
-
-variable "iam_additional_users" {
-  description = "List of additional user maps to add to the aws-auth configmap"
-  type        = list(any)
-  default     = []
-}
-
 ################################################################################
 # Addons
 ################################################################################
