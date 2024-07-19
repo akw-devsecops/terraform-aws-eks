@@ -49,6 +49,7 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.22`) | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC where the cluster and its nodes will be provisioned | `string` | n/a | yes |
+| <a name="input_additional_access_entries"></a> [additional\_access\_entries](#input\_additional\_access\_entries) | Map of access entries to add to the cluster | `any` | `{}` | no |
 | <a name="input_argo_cd_application_management_cluster_name"></a> [argo\_cd\_application\_management\_cluster\_name](#input\_argo\_cd\_application\_management\_cluster\_name) | The name of the application management cluster | `string` | `""` | no |
 | <a name="input_argo_cd_cluster_management_cluster_name"></a> [argo\_cd\_cluster\_management\_cluster\_name](#input\_argo\_cd\_cluster\_management\_cluster\_name) | The name of the cluster management cluster | `string` | `""` | no |
 | <a name="input_argo_cd_remote_target_iam_role_arns"></a> [argo\_cd\_remote\_target\_iam\_role\_arns](#input\_argo\_cd\_remote\_target\_iam\_role\_arns) | The name of the IAM roles to assume for remote cluster management | `set(string)` | `[]` | no |

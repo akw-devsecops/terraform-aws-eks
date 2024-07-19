@@ -68,6 +68,11 @@ variable "admin_roles" {
   description = "ARN of the admin roles that will be added as AmazonEKSClusterAdminPolicy"
   type        = set(string)
 }
+
+variable "additional_access_entries" {
+  description = "Map of access entries to add to the cluster"
+  type        = any
+  default     = {}
 }
 
 variable "iam_argo_cd_cluster_management_role" {

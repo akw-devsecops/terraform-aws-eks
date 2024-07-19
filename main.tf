@@ -177,6 +177,7 @@ module "eks" {
     local.admin_roles,
     local.argo_cd_cluster_management,
     local.argo_cd_application_management,
+    var.additional_access_entries,
   )
 }
 
