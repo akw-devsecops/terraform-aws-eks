@@ -45,10 +45,11 @@ Terraform Module to set up an AWS EKS cluster.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_admin_roles"></a> [admin\_roles](#input\_admin\_roles) | ARN of the admin roles that will be added as AmazonEKSClusterAdminPolicy | `set(string)` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.22`) | `string` | n/a | yes |
-| <a name="input_iam_admin_role"></a> [iam\_admin\_role](#input\_iam\_admin\_role) | ARN of the admin role that will be added to `system:masters` | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC where the cluster and its nodes will be provisioned | `string` | n/a | yes |
+| <a name="input_additional_access_entries"></a> [additional\_access\_entries](#input\_additional\_access\_entries) | Map of access entries to add to the cluster | `any` | `{}` | no |
 | <a name="input_argo_cd_application_management_cluster_name"></a> [argo\_cd\_application\_management\_cluster\_name](#input\_argo\_cd\_application\_management\_cluster\_name) | The name of the application management cluster | `string` | `""` | no |
 | <a name="input_argo_cd_cluster_management_cluster_name"></a> [argo\_cd\_cluster\_management\_cluster\_name](#input\_argo\_cd\_cluster\_management\_cluster\_name) | The name of the cluster management cluster | `string` | `""` | no |
 | <a name="input_argo_cd_remote_target_iam_role_arns"></a> [argo\_cd\_remote\_target\_iam\_role\_arns](#input\_argo\_cd\_remote\_target\_iam\_role\_arns) | The name of the IAM roles to assume for remote cluster management | `set(string)` | `[]` | no |
@@ -66,8 +67,6 @@ Terraform Module to set up an AWS EKS cluster.
 | <a name="input_enable_cluster_autoscaler_role"></a> [enable\_cluster\_autoscaler\_role](#input\_enable\_cluster\_autoscaler\_role) | Determines whether to install Cluster Autoscaler IRSA | `bool` | `false` | no |
 | <a name="input_enable_cluster_creator_admin_permissions"></a> [enable\_cluster\_creator\_admin\_permissions](#input\_enable\_cluster\_creator\_admin\_permissions) | Indicates whether or not to add the cluster creator (the identity used by Terraform) as an administrator via access entry | `bool` | `false` | no |
 | <a name="input_eso_iam_role_name"></a> [eso\_iam\_role\_name](#input\_eso\_iam\_role\_name) | The name of the eso IAM role | `string` | `"eso-operator"` | no |
-| <a name="input_iam_additional_roles"></a> [iam\_additional\_roles](#input\_iam\_additional\_roles) | List of additional roles maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
-| <a name="input_iam_additional_users"></a> [iam\_additional\_users](#input\_iam\_additional\_users) | List of additional user maps to add to the aws-auth configmap | `list(any)` | `[]` | no |
 | <a name="input_iam_argo_cd_application_management_role"></a> [iam\_argo\_cd\_application\_management\_role](#input\_iam\_argo\_cd\_application\_management\_role) | ARN of the application management role | `string` | `null` | no |
 | <a name="input_iam_argo_cd_cluster_management_role"></a> [iam\_argo\_cd\_cluster\_management\_role](#input\_iam\_argo\_cd\_cluster\_management\_role) | ARN of the cluster management role | `string` | `null` | no |
 | <a name="input_kms_key_administrators"></a> [kms\_key\_administrators](#input\_kms\_key\_administrators) | A list of IAM ARNs for [key administrators](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html#key-policy-default-allow-administrators). The current caller identity is always used to ensure at least one key admin is available | `list(string)` | `[]` | no |
