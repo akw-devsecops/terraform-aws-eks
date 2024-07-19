@@ -64,12 +64,10 @@ variable "enable_cluster_creator_admin_permissions" {
   default     = false
 }
 
-################################################################################
-# aws-auth configmap
-################################################################################
-variable "iam_admin_role" {
-  description = "ARN of the admin role that will be added to `system:masters`"
-  type        = string
+variable "admin_roles" {
+  description = "ARN of the admin roles that will be added as AmazonEKSClusterAdminPolicy"
+  type        = set(string)
+}
 }
 
 variable "iam_argo_cd_cluster_management_role" {

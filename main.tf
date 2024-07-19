@@ -46,18 +46,17 @@ locals {
 ${var.coredns_additional_zones}
 EOF
 
-  admin_role = {
-    admin = {
-      principal_arn = var.iam_admin_role
-      policy_associations = {
-        admin = {
-          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-          access_scope = {
-            type = "cluster"
-          }
+  admin_roles = { for id, role in var.admin_roles : role => {
+    principal_arn = role
+    policy_associations = {
+      admin = {
+        policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+        access_scope = {
+          type = "cluster"
         }
       }
     }
+  }
   }
 
   argo_cd_cluster_management = var.iam_argo_cd_cluster_management_role != null ? {
@@ -175,7 +174,7 @@ module "eks" {
   }
 
   access_entries = merge(
-    local.admin_role,
+    local.admin_roles,
     local.argo_cd_cluster_management,
     local.argo_cd_application_management,
   )

@@ -45,9 +45,9 @@ Terraform Module to set up an AWS EKS cluster.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_admin_roles"></a> [admin\_roles](#input\_admin\_roles) | ARN of the admin roles that will be added as AmazonEKSClusterAdminPolicy | `set(string)` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.22`) | `string` | n/a | yes |
-| <a name="input_iam_admin_role"></a> [iam\_admin\_role](#input\_iam\_admin\_role) | ARN of the admin role that will be added to `system:masters` | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC where the cluster and its nodes will be provisioned | `string` | n/a | yes |
 | <a name="input_argo_cd_application_management_cluster_name"></a> [argo\_cd\_application\_management\_cluster\_name](#input\_argo\_cd\_application\_management\_cluster\_name) | The name of the application management cluster | `string` | `""` | no |
 | <a name="input_argo_cd_cluster_management_cluster_name"></a> [argo\_cd\_cluster\_management\_cluster\_name](#input\_argo\_cd\_cluster\_management\_cluster\_name) | The name of the cluster management cluster | `string` | `""` | no |
