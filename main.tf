@@ -102,6 +102,7 @@ module "eks" {
   cluster_endpoint_public_access  = true
   vpc_id                          = var.vpc_id
   control_plane_subnet_ids        = var.control_plane_subnet_ids
+  cluster_enabled_log_types       = var.cluster_enabled_log_types
 
   cluster_addons = {
     kube-proxy = {
