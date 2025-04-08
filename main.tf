@@ -25,8 +25,8 @@ locals {
       effect = "NoSchedule"
     },
     {
-      key    = "CriticalAddonsOnly"
-      effect = "Exists"
+      key      = "CriticalAddonsOnly"
+      operator = "Exists"
     },
     {
       key    = "arch"
