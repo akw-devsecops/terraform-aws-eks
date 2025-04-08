@@ -19,11 +19,21 @@ locals {
     } }
   }
 
-  coredns_tolerations = [{
-    key    = "arch"
-    value  = "arm64"
-    effect = "NoSchedule"
-  }]
+  coredns_tolerations = [
+    {
+      key    = "node-role.kubernetes.io/control-plane"
+      effect = "NoSchedule"
+    },
+    {
+      key    = "CriticalAddonsOnly"
+      effect = "Exists"
+    },
+    {
+      key    = "arch"
+      value  = "arm64"
+      effect = "NoSchedule"
+    }
+  ]
 
   corefile = <<EOF
 .:53 {
@@ -56,7 +66,7 @@ EOF
         }
       }
     }
-  }
+    }
   }
 
   argo_cd_cluster_management = var.iam_argo_cd_cluster_management_role != null ? {
