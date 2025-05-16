@@ -114,6 +114,10 @@ module "eks" {
   control_plane_subnet_ids        = var.control_plane_subnet_ids
   cluster_enabled_log_types       = var.cluster_enabled_log_types
 
+  cluster_upgrade_policy = {
+    support_type = var.cluster_support_type
+  }
+
   cluster_addons = {
     kube-proxy = {
       most_recent = true
