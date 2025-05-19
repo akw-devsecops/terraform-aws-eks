@@ -93,6 +93,12 @@ variable "cluster_enabled_log_types" {
   default     = []
 }
 
+variable "cluster_support_type" {
+  description = "The support type for the cluster. Can be either `STANDARD` or `EXTENDED`"
+  type        = string
+  default     = "STANDARD"
+}
+
 ################################################################################
 # Addons
 ################################################################################
